@@ -124,9 +124,9 @@ function updateView(){
         client.open('GET', 'log.html');
         client.onreadystatechange = function() {
             view.innerHTML = client.responseText;
+            updateLogPage();
           }
         client.send();
-        updateLogPage();
     }
     
 }
