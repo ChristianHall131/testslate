@@ -145,30 +145,30 @@ function updateLogPage() {
     maintext = '';
     sidetext = '';
     quests.main.forEach((val, ind) => {
-        if (!val.completed) {
+        if (val.completed) {
             maintext +=`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`
         } else {
             maintext +=`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`
         }
     })
-    mainlist.innerHTML = maintext;
     quests.shrine.forEach((val, ind) => {
         console.log('WHYYYYYY')
-        if (!val.completed) {
+        if (val.completed) {
             shrinetext.concat(`<div class="quest completed" onclick="setActiveQuest("shrine",${ind})"><p>${val.name}<p></div>`)
         } else {
             shrinetext.concat(`<div class="quest" onclick="setActiveQuest("shrine",${ind})"><p>${val.name}<p></div>`)
         }
     })
-    shrinelist.innerHTML = maintext;
     quests.side.forEach((val, ind) => {
-        if (!val.completed) {
+        if (val.completed) {
             sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("side",${ind})"><p>${val.name}<p></div>`)
         } else {
             sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("side",${ind})"><p>${val.name}<p></div>`)
         }
     })
-    sidelist.innerHTML = maintext;
+    mainlist.innerHTML = maintext;
+    shrinelist.innerHTML = shrinetext;
+    sidelist.innerHTML = sidetext;
     console.log(sidetext,maintext,shrinetext)
 }
 function updateMap(){
