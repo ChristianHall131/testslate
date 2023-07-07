@@ -1,5 +1,6 @@
 let step = "";
 let tab = "";
+let active = ['main',0]
 let allSteps = [
     {
         name: 'Introduction'
@@ -31,14 +32,40 @@ let quests = {
             description:'An old ghost has given you a task gain four mysterious powers, seek them out to enhance your power',
             completed: false,
         },
+    ],
+    shrine:[
         {
             name: 'A test of skill',
-            description:'A special evening is planned for the princess, adventure awaits!',
+            description:'Prove your might as a swordsman',
+            completed: false,
+        },
+        {
+            name: 'A test of patience',
+            description:'Solve the labarynth set before you',
+            completed: false,
+        },
+        {
+            name: 'A test of creativity',
+            description:'Decorate these items to appease the goddess',
+            completed: false,
+        },
+        {
+            name: 'A test of knowledge',
+            description:'Prove your knowledge about ages past',
             completed: false,
         },
     ],
     side:[
-
+        {
+            name: 'The royal recipies',
+            description:'You found an old cookbook, and now that you think about it, your health and stamina is pretty low, lets make some food!',
+            completed: false,
+        },
+        {
+            name: 'Mining Frenzy',
+            description:'The gorons have always said the rocks are tasty, why not try some for yourself?',
+            completed: false,
+        },
     ]
 }
 function intitalize(){
@@ -92,6 +119,9 @@ function updateView(){
           }
         client.send();
     }
+    
+}
+function updateLogPage(){
     
 }
 intitalize();
