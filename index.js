@@ -154,16 +154,16 @@ function updateLogPage() {
     quests.shrine.forEach((val, ind) => {
         console.log('WHYYYYYY')
         if (val.completed) {
-            shrinetext.concat(`<div class="quest completed" onclick="setActiveQuest('shrine',${ind})"><p>${val.name}<p></div>`)
+            shrinetext += `<div class="quest completed" onclick="setActiveQuest('shrine',${ind})"><p>${val.name}<p></div>`
         } else {
-            shrinetext.concat(`<div class="quest" onclick="setActiveQuest('shrine',${ind})"><p>${val.name}<p></div>`)
+            shrinetext +=`<div class="quest" onclick="setActiveQuest('shrine',${ind})"><p>${val.name}<p></div>`
         }
     })
     quests.side.forEach((val, ind) => {
         if (val.completed) {
-            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest('side',${ind})"><p>${val.name}<p></div>`)
+            sidetext += `<div class="quest completed" onclick="setActiveQuest('side',${ind})"><p>${val.name}<p></div>`
         } else {
-            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest('side',${ind})"><p>${val.name}<p></div>`)
+            sidetext += `<div class="quest completed" onclick="setActiveQuest('side',${ind})"><p>${val.name}<p></div>`
         }
     })
     mainlist.innerHTML = maintext;
