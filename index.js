@@ -1,7 +1,7 @@
 let step = "";
 let tab = "";
-let active = ['main',0]
-mapCoords=[]
+let active = ['main', 0]
+mapCoords = []
 let allSteps = [
     {
         name: 'Introduction'
@@ -16,88 +16,89 @@ let allSteps = [
         name: 'Ending'
     }
 ];
-let questTypes={
-    0:'Main',
+let questTypes = {
+    0: 'Main',
     1: 'Shrine',
     2: 'Side'
 }
 let quests = {
-    main:[
+    main: [
         {
             name: 'Save the Princess',
-            description:'A special evening is planned for the princess, adventure awaits!',
+            description: 'A special evening is planned for the princess, adventure awaits!',
             completed: false,
-            mapcoords:[]
+            mapcoords: []
         },
         {
             name: 'The Hero\'s Preparation',
-            description:'An old ghost has given you a task gain four mysterious powers, seek them out to enhance your power',
+            description: 'An old ghost has given you a task gain four mysterious powers, seek them out to enhance your power',
             completed: false,
         },
     ],
-    shrine:[
+    shrine: [
         {
             name: 'A test of skill',
-            description:'Prove your might as a swordsman',
+            description: 'Prove your might as a swordsman',
             completed: false,
         },
         {
             name: 'A test of patience',
-            description:'Solve the labarynth set before you',
+            description: 'Solve the labarynth set before you',
             completed: false,
         },
         {
             name: 'A test of creativity',
-            description:'Decorate these items to appease the goddess',
+            description: 'Decorate these items to appease the goddess',
             completed: false,
         },
         {
             name: 'A test of knowledge',
-            description:'Prove your knowledge about ages past',
+            description: 'Prove your knowledge about ages past',
             completed: false,
         },
     ],
-    side:[
+    side: [
         {
             name: 'The royal recipies',
-            description:'You found an old cookbook, and now that you think about it, your health and stamina is pretty low, lets make some food!',
+            description: 'You found an old cookbook, and now that you think about it, your health and stamina is pretty low, lets make some food!',
             completed: false,
         },
         {
             name: 'Mining Frenzy',
-            description:'The gorons have always said the rocks are tasty, why not try some for yourself?',
+            description: 'The gorons have always said the rocks are tasty, why not try some for yourself?',
             completed: false,
         },
     ]
 }
-function intitalize(){
+function intitalize() {
     let getStep = window.localStorage.getItem('slate_step') || '';
-    let parsedStep = getStep? JSON.parse(getStep):'Introduction';
+    let parsedStep = getStep ? JSON.parse(getStep) : 'Introduction';
     step = parsedStep;
     let allQuestsRaw = window.localStorage.getItem('slate_quests');
-    quests = allQuestsRaw ? JSON.parse(allQuestsRaw):quests;
+    quests = allQuestsRaw ? JSON.parse(allQuestsRaw) : quests;
     setTab('map');
 }
-function updateStep(name){
-    window.localStorage.setItem('slate_step',name);
+function updateStep(name) {
+    window.localStorage.setItem('slate_step', name);
     step = name;
-    
+
 }
-function updateQuest(type, name, completed){
-    let questIndex = quests[type].findIndex(e=>e.name === name);
+function updateQuest(type, name, completed) {
+    let questIndex = quests[type].findIndex(e => e.name === name);
     quests[type][questIndex].completed = Boolean(completed);
-    window.localStorage.setItem('slate_step',JSON.stringify(quests));
+    window.localStorage.setItem('slate_step', JSON.stringify(quests));
     updateLogPage();
 }
-function setActiveQuest(type,ind){
-    active = [type,parseInt(ind)];
+function setActiveQuest(type, ind) {
+    active = [type, parseInt(ind)];
+    mapCoords = quests[type][ind].mapcoords;
     updateLogPage();
 }
-function setTab(t){
+function setTab(t) {
     let leftArrow = document.getElementById('arrow_left');
     let rightArrow = document.getElementById('arrow_right');
     tab = t;
-    switch(t){
+    switch (t) {
         case 'map':
             leftArrow.style.display = 'block';
             rightArrow.style.display = 'none';
@@ -109,28 +110,29 @@ function setTab(t){
     }
     updateView();
 }
-function updateView(){
+function updateView() {
     console.log('beeeees')
     let view = document.getElementById('view');
     var client = new XMLHttpRequest();
-    if (tab === "map"){
+    if (tab === "map") {
         console.log('bees')
         client.open('GET', 'map.html');
-        client.onreadystatechange = function() {
+        client.onreadystatechange = function () {
             view.innerHTML = client.responseText;
-          }
+            updateMap();
+        }
         client.send();
-    }else if (tab === "log"){
+    } else if (tab === "log") {
         client.open('GET', 'log.html');
-        client.onreadystatechange = function() {
+        client.onreadystatechange = function () {
             view.innerHTML = client.responseText;
             updateLogPage();
-          }
+        }
         client.send();
     }
-    
+
 }
-function updateLogPage(){
+function updateLogPage() {
     let activeQuest = quests[active[0]][active[1]]
     let description = document.getElementById('description');
     description.innerHTML = activeQuest.description;
@@ -139,31 +141,42 @@ function updateLogPage(){
     let mainlist = document.getElementById('mainList');
     let shrinelist = document.getElementById('shrine');
     shrinetext = '';
-    maintext='';
-    sidetext='';
-    quests.main.forEach((val,ind)=>{
-        if(!val.completed){
+    maintext = '';
+    sidetext = '';
+    quests.main.forEach((val, ind) => {
+        if (!val.completed) {
             maintext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
-        }else{
-            maintext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`) 
+        } else {
+            maintext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
         }
     })
-    mainlist.innerHTML=maintext;
-    quests.shrine.forEach((val,ind)=>{
-        if(!val.completed){
+    mainlist.innerHTML = maintext;
+    quests.shrine.forEach((val, ind) => {
+        if (!val.completed) {
             shrinetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
-        }else{
-            shrinetext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`) 
+        } else {
+            shrinetext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
         }
     })
-    shrinelist.innerHTML=maintext;
-    quests.side.forEach((val,ind)=>{
-        if(!val.completed){
+    shrinelist.innerHTML = maintext;
+    quests.side.forEach((val, ind) => {
+        if (!val.completed) {
             sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
-        }else{
-            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`) 
+        } else {
+            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
         }
     })
-    sidelist.innerHTML=maintext;
+    sidelist.innerHTML = maintext;
+}
+function updateMap(){
+    let marker = document.getElementById('marker');
+    if(mapCoords.length){
+        marker.style.top = `${mapCoords[0]}%`;
+        marker.style.left= `${mapCoords[1]}%`;
+        marker.style.display=auto;
+    }else{
+        marker.style.display = 'none';
+    }
+
 }
 intitalize();
