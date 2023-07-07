@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sheikah Slate</title>
+        <script type="text/javascript" src="index.js" defer></script>
+        <style>
+            #view{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                background-image: url(images/slatebackground.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+            }
+            #arrow_left{
+                position:absolute;
+                height:20%;
+                width:auto;
+                top:40%;
+                left:10px;
+            }
+            #arrow_right{
+                position:absolute;
+                height:20%;
+                width:auto;
+                top:40%;
+                right: 10px;
+            }
+        </style>
+    </head>
+    <body style="margin:0;">
+        <div id="view">
+        </div>
+        <div id="arrow_left" onclick="setTab('log')">
+            <img src="images/left.svg" style="height: 100%;">
+        </div>
+        <div id="arrow_right" onclick="setTab('map')">
+            <img src="images/left.svg" style="transform: scaleX(-1); height: 100%;">
+        </div>
+    </body>
+</html>
