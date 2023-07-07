@@ -1,6 +1,7 @@
 let step = "";
 let tab = "";
 let active = ['main',0]
+mapCoords=[]
 let allSteps = [
     {
         name: 'Introduction'
@@ -79,11 +80,17 @@ function intitalize(){
 function updateStep(name){
     window.localStorage.setItem('slate_step',name);
     step = name;
+    
 }
 function updateQuest(type, name, completed){
     let questIndex = quests[type].findIndex(e=>e.name === name);
-    quests[type][questIndex].completed = completed;
+    quests[type][questIndex].completed = Boolean(completed);
     window.localStorage.setItem('slate_step',JSON.stringify(quests));
+    updateLogPage();
+}
+function setActiveQuest(type,ind){
+    active = [type,parseInt(ind)];
+    updateLogPage();
 }
 function setTab(t){
     let leftArrow = document.getElementById('arrow_left');
@@ -118,10 +125,44 @@ function updateView(){
             view.innerHTML = client.responseText;
           }
         client.send();
+        updateLogPage();
     }
     
 }
 function updateLogPage(){
-    
+    let activeQuest = quests[active[0]][active[1]]
+    let description = document.getElementById('description');
+    description.innerHTML = activeQuest.description;
+    description.innerHTML += `<div class="completebutton" onclick="updateQuest(${active[0]},${active[1]},true)"><h1>Completed</h1></div>`
+    let sidelist = document.getElementById('sideList');
+    let mainlist = document.getElementById('mainList');
+    let shrinelist = document.getElementById('shrine');
+    shrinetext = '';
+    maintext='';
+    sidetext='';
+    quests.main.forEach((val,ind)=>{
+        if(!val.completed){
+            maintext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+        }else{
+            maintext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`) 
+        }
+    })
+    mainlist.innerHTML=maintext;
+    quests.shrine.forEach((val,ind)=>{
+        if(!val.completed){
+            shrinetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+        }else{
+            shrinetext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`) 
+        }
+    })
+    shrinelist.innerHTML=maintext;
+    quests.side.forEach((val,ind)=>{
+        if(!val.completed){
+            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+        }else{
+            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`) 
+        }
+    })
+    sidelist.innerHTML=maintext;
 }
 intitalize();
