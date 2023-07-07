@@ -146,9 +146,9 @@ function updateLogPage() {
     sidetext = '';
     quests.main.forEach((val, ind) => {
         if (!val.completed) {
-            maintext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+            maintext +=`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`
         } else {
-            maintext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+            maintext +=`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`
         }
     })
     mainlist.innerHTML = maintext;
