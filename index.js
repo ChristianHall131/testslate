@@ -175,6 +175,7 @@ function updateMap(){
     let view = document.getElementById('view');
     console.log(view)
     let marker = document.getElementById('marker');
+    console.log(marker);
     if(mapCoords.length){
         marker.style.top = `${mapCoords[0]}%`;
         marker.style.left= `${mapCoords[1]}%`;
