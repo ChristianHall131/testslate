@@ -163,7 +163,7 @@ function updateLogPage() {
         if (val.completed) {
             sidetext += `<div class="quest completed" onclick="setActiveQuest('side',${ind})"><p>${val.name}<p></div>`
         } else {
-            sidetext += `<div class="quest completed" onclick="setActiveQuest('side',${ind})"><p>${val.name}<p></div>`
+            sidetext += `<div class="quest" onclick="setActiveQuest('side',${ind})"><p>${val.name}<p></div>`
         }
     })
     mainlist.innerHTML = maintext;
