@@ -126,6 +126,7 @@ function updateView() {
         client.open('GET', 'log.html');
         client.onreadystatechange = function () {
             view.innerHTML = client.responseText;
+            console.log(view)
             updateLogPage();
         }
         client.send();
@@ -153,17 +154,17 @@ function updateLogPage() {
     mainlist.innerHTML = maintext;
     quests.shrine.forEach((val, ind) => {
         if (!val.completed) {
-            shrinetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+            shrinetext.concat(`<div class="quest completed" onclick="setActiveQuest("shrine",${ind})"><p>${val.name}<p></div>`)
         } else {
-            shrinetext.concat(`<div class="quest" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+            shrinetext.concat(`<div class="quest" onclick="setActiveQuest("shrine",${ind})"><p>${val.name}<p></div>`)
         }
     })
     shrinelist.innerHTML = maintext;
     quests.side.forEach((val, ind) => {
         if (!val.completed) {
-            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("side",${ind})"><p>${val.name}<p></div>`)
         } else {
-            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("main",${ind})"><p>${val.name}<p></div>`)
+            sidetext.concat(`<div class="quest completed" onclick="setActiveQuest("side",${ind})"><p>${val.name}<p></div>`)
         }
     })
     sidelist.innerHTML = maintext;
