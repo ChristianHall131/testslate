@@ -5,21 +5,21 @@
     <div id="log">
         <div id="logList">
             <div id="mainHeader" class="header">
-                <img src="images/crest.png" />
+                <img src="images/crest.png" class="icon" />
                 <h3>Main Quests</h3>
             </div>
             <div id="mainList" class="list">
 
             </div>
             <div id="shrineHeader" class="header">
-                <img src="images/shrineicon.png" />
+                <img src="images/shrineicon.png" class="icon"/>
                 <h3>Shrine Quests</h3>
             </div>
             <div id="shrineList" class="list">
 
             </div>
             <div id="sideHeader" class="header">
-                <img src="images/sidequest.png" />
+                <img src="images/sidequest.png" class="icon"/>
                 <h3>Side Quests</h3>
             </div>
             <div id="sideList" class="list">
@@ -30,4 +30,22 @@
 
         </div>
     </div>
+    <style>
+        #logList{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+        }
+        .icon{
+            width: 2rem;
+            height: 2rem;
+        }
+        .header{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+    </style>
 </div>
