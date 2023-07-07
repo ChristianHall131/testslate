@@ -168,6 +168,7 @@ function updateLogPage() {
         }
     })
     sidelist.innerHTML = maintext;
+    console.log(sidetext,maintext,shrinetext)
 }
 function updateMap(){
     let marker = document.getElementById('marker');
