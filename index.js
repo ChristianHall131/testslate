@@ -140,7 +140,7 @@ function updateLogPage() {
     description.innerHTML += `<div class="completebutton" onclick="updateQuest(${active[0]},${active[1]},true)"><h1>Completed</h1></div>`
     let sidelist = document.getElementById('sideList');
     let mainlist = document.getElementById('mainList');
-    let shrinelist = document.getElementById('shrine');
+    let shrinelist = document.getElementById('shrineList');
     shrinetext = '';
     maintext = '';
     sidetext = '';
