@@ -153,6 +153,7 @@ function updateLogPage() {
     })
     mainlist.innerHTML = maintext;
     quests.shrine.forEach((val, ind) => {
+        console.log('WHYYYYYY')
         if (!val.completed) {
             shrinetext.concat(`<div class="quest completed" onclick="setActiveQuest("shrine",${ind})"><p>${val.name}<p></div>`)
         } else {
