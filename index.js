@@ -172,6 +172,8 @@ function updateLogPage() {
     console.log(sidetext,maintext,shrinetext)
 }
 function updateMap(){
+    let view = document.getElementById('view');
+    console.log(view)
     let marker = document.getElementById('marker');
     if(mapCoords.length){
         marker.style.top = `${mapCoords[0]}%`;
