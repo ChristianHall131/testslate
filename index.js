@@ -137,7 +137,7 @@ function updateLogPage() {
     let activeQuest = quests[active[0]][active[1]]
     let description = document.getElementById('description');
     description.innerHTML = activeQuest.description;
-    description.innerHTML += `<div class="completebutton" onclick="updateQuest("${active[0]}",${active[1]},true)"><h1>Completed</h1></div>`
+    description.innerHTML += `<div class="completebutton" onclick="updateQuest("${active[0]}",${active[1]},true)"><h1>Complete</h1></div>`
     let sidelist = document.getElementById('sideList');
     let mainlist = document.getElementById('mainList');
     let shrinelist = document.getElementById('shrineList');
