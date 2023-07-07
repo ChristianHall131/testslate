@@ -27,6 +27,7 @@ let quests = {
             name: 'Save the Princess',
             description:'A special evening is planned for the princess, adventure awaits!',
             completed: false,
+            mapcoords:[]
         },
         {
             name: 'The Hero\'s Preparation',
