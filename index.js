@@ -1,7 +1,7 @@
 let step = "";
 let tab = "";
 let active = ['main', 0]
-mapCoords = []
+mapCoords = [90,60]
 let allSteps = [
     {
         name: 'Introduction'
