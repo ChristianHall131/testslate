@@ -27,12 +27,13 @@ let quests = {
             name: 'Save the Princess',
             description: 'A special evening is planned for the princess, adventure awaits!',
             completed: false,
-            mapcoords: []
+            mapcoords: [80,70]
         },
         {
             name: 'The Hero\'s Preparation',
             description: 'An old ghost has given you a task gain four mysterious powers, seek them out to enhance your power',
             completed: false,
+            mapcoords: [80,70]
         },
     ],
     shrine: [
@@ -40,21 +41,25 @@ let quests = {
             name: 'A test of skill',
             description: 'Prove your might as a swordsman',
             completed: false,
+            mapcoords: [90,50]
         },
         {
             name: 'A test of patience',
             description: 'Solve the labarynth set before you',
             completed: false,
+            mapcoords: [70,70]
         },
         {
             name: 'A test of creativity',
             description: 'Decorate these items to appease the goddess',
             completed: false,
+            mapcoords: [75,70]
         },
         {
             name: 'A test of knowledge',
             description: 'Prove your knowledge about ages past',
             completed: false,
+            mapcoords: [90,65]
         },
     ],
     side: [
@@ -62,11 +67,13 @@ let quests = {
             name: 'The royal recipies',
             description: 'You found an old cookbook, and now that you think about it, your health and stamina is pretty low, lets make some food!',
             completed: false,
+            mapcoords: [80,15]
         },
         {
             name: 'Mining Frenzy',
             description: 'The gorons have always said the rocks are tasty, why not try some for yourself?',
             completed: false,
+            mapcoords: [80,15]
         },
     ]
 }
