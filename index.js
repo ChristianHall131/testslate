@@ -186,8 +186,6 @@ function updateMap(){
         marker.style.top = `${mapCoords[0]}%`;
         marker.style.left= `${mapCoords[1]}%`;
         marker.style.display = 'block';
-    }else{
-        marker.style.display = 'none';
     }
 
 }
