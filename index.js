@@ -90,9 +90,8 @@ function updateStep(name) {
     step = name;
 
 }
-function updateQuest(type, name, completed) {
-    let questIndex = quests[type].findIndex(e => e.name === name);
-    quests[type][questIndex].completed = Boolean(completed);
+function updateQuest(type, index, completed) {
+    quests[type][parseInt(index)].completed = Boolean(completed);
     window.localStorage.setItem('slate_step', JSON.stringify(quests));
     updateLogPage();
 }
@@ -144,7 +143,7 @@ function updateLogPage() {
     let activeQuest = quests[active[0]][active[1]]
     let description = document.getElementById('description');
     description.innerHTML = activeQuest.description;
-    description.innerHTML += `<div class="completebutton" onclick="updateQuest("${active[0]}",${active[1]},true)"><h1>Complete</h1></div>`
+    description.innerHTML += `<div class="completebutton" onclick="updateQuest('${active[0]}',${active[1]},true)"><h1>Complete</h1></div>`
     let sidelist = document.getElementById('sideList');
     let mainlist = document.getElementById('mainList');
     let shrinelist = document.getElementById('shrineList');
